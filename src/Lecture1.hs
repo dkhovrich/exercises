@@ -111,7 +111,12 @@ first character) and negative end position should result in an empty
 string.
 -}
 subString :: Int -> Int -> [Char] -> [Char]
-subString start end str = take (end - start + 1) (drop start str)
+subString start end str = if end < 0 then "" else go s end
+ where 
+   s = if start < 0 then 0 else start
+   go :: Int -> Int -> [Char]
+   go start end = take (end - start + 1) (drop start str)
+ 
 
 {- | Write a function that takes a String — space separated numbers,
 and finds a sum of the numbers inside this string.
