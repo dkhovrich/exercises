@@ -56,7 +56,7 @@ sumOfSquares :: Int -> Int -> Int
 sumOfSquares x y = square x + square y
   where
     square :: Int -> Int
-    square x = x * x
+    square n = n * n
 
 {- | Implement a function that returns the last digit of a given number.
 
@@ -113,7 +113,7 @@ string.
 subString :: Int -> Int -> [Char] -> [Char]
 subString start end str = if end < 0 then "" else go s end
  where 
-   s = if start < 0 then 0 else start
+   s = max 0 start
    go :: Int -> Int -> [Char]
    go start end = take (end - start + 1) (drop start str)
  
@@ -130,7 +130,7 @@ strSum :: [Char] -> Int
 strSum str = sum (map stringToInt (words str))
   where
     stringToInt :: [Char] -> Int
-    stringToInt str = read str :: Int
+    stringToInt str = read str
 
 {- | Write a function that takes a number and a list of numbers and
 returns a string, saying how many elements of the list are strictly
