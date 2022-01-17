@@ -37,6 +37,7 @@ import Data.List
 its behaviour, possible types for the function arguments and write the
 type signature explicitly.
 -}
+makeSnippet :: Int -> [Char] -> [Char]
 makeSnippet limit text = take limit ("Description: " ++ text) ++ "..."
 
 {- | Implement a function that takes two numbers and finds sum of
@@ -72,7 +73,7 @@ sumOfSquares x y = square x + square y
 lastDigit :: Int -> Int
 lastDigit n = mod v 10
   where
-    v = if n < 0 then n * (-1) else n
+    v = abs n
 
 {- | Write a function that takes three numbers and returns the
 difference between the biggest number and the smallest one.
@@ -87,13 +88,13 @@ Try to use local variables (either let-in or where) to implement this
 function.
 -}
 minmax :: Int -> Int -> Int -> Int
-minmax x y z = max - min
+minmax x y z = maxVal - minVal
   where
     list = [x, y, z]
-    max :: Int
-    max = head (reverse (sort list))
-    min :: Int
-    min = head (sort list)
+    maxVal :: Int
+    maxVal = head (reverse (sort list))
+    minVal :: Int
+    minVal = head (sort list)
 
 {- | Implement a function that takes a string, start and end positions
 and returns a substring of a given string from the start position to
@@ -115,7 +116,7 @@ subString start end str = if end < 0 then "" else go s end
  where 
    s = max 0 start
    go :: Int -> Int -> [Char]
-   go start end = take (end - start + 1) (drop start str)
+   go st en = take (en - st + 1) (drop st str)
  
 
 {- | Write a function that takes a String — space separated numbers,
@@ -130,7 +131,7 @@ strSum :: [Char] -> Int
 strSum str = sum (map stringToInt (words str))
   where
     stringToInt :: [Char] -> Int
-    stringToInt str = read str
+    stringToInt st = read st
 
 {- | Write a function that takes a number and a list of numbers and
 returns a string, saying how many elements of the list are strictly
